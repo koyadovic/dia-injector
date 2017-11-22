@@ -1,3 +1,5 @@
+# Diainjector
+
 ## Synopsis
 
 This is a simple dependency injector implementation used in dia-backend project.
@@ -19,7 +21,7 @@ And from other module or package:
 
 ## Motivation
 
-The core of dia-backend is a framework that runs above a Django project but it doesn't know that runs above Django. To help us to get this working we need this simple dependency injector.
+The core of dia-backend is a framework that runs above a Django project but it doesn't know that runs above Django. To help us to get this working we needed this simple dependency injector.
 
 ## Installation
 
