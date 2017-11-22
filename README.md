@@ -25,8 +25,6 @@ The core of dia-backend is a framework that runs above a Django project but it d
 
 ## Installation
 
-`git clone https://github.com/koyadovic/diainjector.git`
-
 `pip install diainjector`
 
 ## Tests
