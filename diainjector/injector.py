@@ -1,5 +1,4 @@
 
-
 class Implementation:
     _impl = None
 
@@ -14,12 +13,10 @@ class Implementation:
         self._impl = impl
 
 
-"""
-This will serve as a dependency injector system as a singleton
-"""
-
-
 class Injector:
+    """
+    This will serve as a dependency injector system as a singleton
+    """
     _IMPLEMENTATIONS_REGISTERED = []
     _IMPLEMENTATIONS_REQUESTED = []
 
@@ -45,24 +42,26 @@ class Injector:
         assert issubclass(instance.__class__, interface_cls)
         assert interface_cls not in [impl["interface_cls"] for impl in Injector._IMPLEMENTATIONS_REGISTERED]
 
-        Injector._IMPLEMENTATIONS_REGISTERED.append(
-            {
-                "interface_cls": interface_cls,
-                "instance": instance
-            }
-        )
+        provide = {
+            "interface_cls": interface_cls,
+            "instance": instance
+        }
 
+        Injector._IMPLEMENTATIONS_REGISTERED.append(provide)
         Injector._resolve_and_inject_dependencies()
 
-    def request_implementation(self, interface_cls, callback_function):
-        Injector._IMPLEMENTATIONS_REQUESTED.append(
-            {
-                "interface_cls": interface_cls,
-                "callback_function": callback_function,
-            }
-        )
+    def request_implementation(self, interface_cls):
+        implementation = Implementation(interface_cls)
 
+        request = {
+            "interface_cls": interface_cls,
+            "implementation": implementation
+        }
+
+        Injector._IMPLEMENTATIONS_REQUESTED.append(request)
         Injector._resolve_and_inject_dependencies()
+
+        return implementation
 
 
 injector = Injector()
